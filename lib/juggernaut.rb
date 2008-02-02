@@ -72,34 +72,6 @@ module Juggernaut
       }
       send_data(fc)
     end
-    
-    # Shows all users if client_ids isn't specified
-    def show_users(client_ids = [])
-      fc = {
-        :command    => :query,
-        :type       => :show_users,
-        :client_ids => client_ids
-      }
-      send_data(fc)
-    end
-    
-    def show_user(client_id)
-      fc = {
-        :command    => :query,
-        :type       => :show_user,
-        :client_id  => client_id
-      }
-      send_data(fc)
-    end
-    
-    def show_users_for_channel(channel)
-      fc = {
-        :command    => :query,
-        :type       => :show_users_for_channels,
-        :channels   => channel
-      }
-      send_data(fc)
-    end
 
     def send_data(hash)
       hash[:channels] = hash[:channels].to_a if hash[:channels]
