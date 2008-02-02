@@ -108,7 +108,7 @@ var Juggernaut = Class.create({
       height: this.options.height,
       width:  this.options.width
     });
-    document.body.insert({ bottom: this.element });
+    $(document.body).insert({ bottom: this.element });
     this.so = new SWFObject(
       this.options.swf_address, 
       this.options.swf_name, 
