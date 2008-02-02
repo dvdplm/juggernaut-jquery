@@ -147,8 +147,25 @@ Juggernaut.send_to_clients('data', [1,2,3])
 For authentication options and callbacks see the juggernaut.yml configuration file.
 
 Usage and examples: http://ncavig.com/blog/
-Support and forums: http://groups.google.com/group/Juggernaut-for-Rails?hl=en 
+Support and forums: http://groups.google.com/group/Juggernaut-for-Rails?hl=en
 
+=== Getting remote clients to connect ===
+
+Firstly you will need to configure juggernaut_hosts.yml in your Rails app to point to the proper IP of the push server (rather than 127.0.0.1).
+For example:
+:hosts:
+  - :port: 5001
+    :host: 129.168.0.2
+    :environment: :production
+
+Ok, remote clients that visit pages on this server (once you restart it) will connect to the proper push server IP. BUT, if you're using IP based
+authentication (recommended) you'll find that the broadcast authentication fails.
+You'll need to add the Rails IP to juggernaut.yml, like so:
+
+:allowed_ips: 
+        - 127.0.0.1
+        - 192.168.0.4 # IP of the Rails app
+             
 ===============================================
 Troubleshooting
 ===============================================
