@@ -41,7 +41,7 @@ var Juggernaut = Class.create({
     this.options = options.evalJSON();
     Event.observe(window, 'load', function() {      
       this.appendFlashObject();
-      this.addObservers();
+      juggernaut = this;
     }.bind(this));
   },
   
@@ -119,24 +119,13 @@ var Juggernaut = Class.create({
     );
     this.so.useExpressInstall(this.options.ei_swf_address);
 	  this.so.addVariable("bridgeName", this.options.bridge_name);
-	  this.so.addVariable("objectID", this.options.swf_name);
     this.so.write(this.element);
     this.swf = $(this.options.swf_name);
-  },
-  
-  addObservers: function(){
-    this.swf.observe('juggernaut:connected',       this.connected.bind(this));
-    this.swf.observe('juggernaut:errorConnecting', this.errorConnecting.bind(this));
-    this.swf.observe('juggernaut:receiveData',     this.receiveData.bind(this));
-    this.swf.observe('juggernaut:disconnected',    this.disconnected.bind(this));
-    this.swf.observe('juggernaut:initialized',     this.connect.bind(this));
   },
   
   refreshFlashObject: function(){
-    this.swf.stopObserving();
     this.so.write(this.element);
     this.swf = $(this.options.swf_name);
-    this.addObservers();
   },
   
   errorConnecting: function(e) {

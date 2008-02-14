@@ -48,9 +48,9 @@ class SocketServer {
   
   static function onConnect(success:Boolean) {
     if(success){
-      ExternalInterface.call("Event.fire", _root.objectID, "juggernaut:connected");
+      ExternalInterface.call("juggernaut.connected");
     } else {
-      ExternalInterface.call("Event.fire", _root.objectID, "juggernaut:errorConnecting");
+      ExternalInterface.call("juggernaut.errorConnecting");
     }
   }
   
@@ -59,11 +59,11 @@ class SocketServer {
   }
   
   static function onDisconnect() {
-    ExternalInterface.call("Event.fire", _root.objectID, "juggernaut:disconnected");
+    ExternalInterface.call("juggernaut.disconnected");
   }
   
   static function onData(data:String) {    
-    ExternalInterface.call("Event.fire", _root.objectID, "juggernaut:receiveData", escape(data));
+    ExternalInterface.call("juggernaut.receiveData", escape(data));
   }
   
   static function main() {
@@ -71,10 +71,7 @@ class SocketServer {
     ExternalInterface.addCallback("sendData", null, sendData);
     ExternalInterface.addCallback("disconnect", null, disconnect);
     
-    /* We have to use _root.objectID since I can't get ExternalInterface.objectID to compile in mtasc.
-       Perhaps it doesn't exists in Flash 8? 
-    */
-    ExternalInterface.call("Event.fire", _root.objectID, "juggernaut:initialized");
+    ExternalInterface.call("juggernaut.initialized");
   }
   
 }
