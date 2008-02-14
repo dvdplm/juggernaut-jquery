@@ -94,7 +94,7 @@ var Juggernaut = Class.create({
   },
 
   receiveData: function(e) {
-     var msg = unescape(e.memo.toString()).evalJSON();
+     var msg = unescape(e.toString()).evalJSON();
      this.currentMsgId = msg.id;
      this.currentSignature = msg.signature;
      this.logger("Received data:\n" + msg.body + "\n");
