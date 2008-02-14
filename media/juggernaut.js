@@ -45,6 +45,10 @@ var Juggernaut = Class.create({
     }.bind(this));
   },
   
+  initialized: function(){
+    this.connect();
+  }
+  
   broadcast: function(body, type, client_ids, channels){
     var msg = new Hash();
     msg.set('command',  'broadcast');
