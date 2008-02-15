@@ -89,7 +89,7 @@ module Juggernaut
           # puts e
           # false
         ensure
-          @socket.close if @socket
+          @socket.close if @socket and !@socket.closed?
         end
       end
     end
