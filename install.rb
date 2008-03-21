@@ -12,7 +12,7 @@ FileUtils.cp("#{here}/media/juggernaut.js", "#{there}/public/javascripts/juggern
 FileUtils.cp("#{here}/media/juggernaut.swf", "#{there}/public/juggernaut/")
 FileUtils.cp("#{here}/media/expressinstall.swf", "#{there}/public/juggernaut/")
 
-FileUtils.cp("#{here}/media/juggernaut_hosts.yml", "#{there}/config/") unless File.exist?("#{here}/media/juggernaut_hosts.yml")
+FileUtils.cp("#{here}/media/juggernaut_hosts.yml", "#{there}/config/") unless File.exist?("#{there}/config/juggernaut_hosts.yml")
 puts "Juggernaut has been successfully installed."
 puts
 puts "Please refer to the readme file #{File.expand_path(here)}/README"
