@@ -5,8 +5,8 @@ module Juggernaut # :nodoc:
       hosts = Juggernaut::CONFIG[:hosts].select {|h| !h[:environment] or h[:environment] == ENV['RAILS_ENV'].to_sym }
       random_host = hosts[rand(hosts.length)]
       options = {
-        :host                 => random_host[:host],
-        :port                 => random_host[:port],
+        :host                 => random_host[:public_host],
+        :port                 => random_host[:public_port],
         :width                => '0px',
         :height               => '0px',
         :session_id           => session.session_id,
