@@ -37,6 +37,10 @@ var Juggernaut = Class.create({
     }
   },
   
+  fire_event: function(fx_name) {
+     $(document).fire("juggernaut:" + fx_name);
+   },
+  
   initialize: function(options) {
     this.options = options.evalJSON();
     Event.observe(window, 'load', function() {      
@@ -46,6 +50,7 @@ var Juggernaut = Class.create({
   },
   
   initialized: function(){
+    this.fire_event('initialized');
     this.connect();
   },
   
@@ -64,6 +69,7 @@ var Juggernaut = Class.create({
   },
   
   connect: function(){
+    this.fire_event('connect');
     if(!this.is_connected) this.swf().connect(this.options.host, this.options.port);
   },
   
@@ -71,6 +77,7 @@ var Juggernaut = Class.create({
     if(this.is_connected) {
       this.swf().disconnect();
       this.is_connected = false;
+      this.fire_event('disconnect');
     }
   },
   
@@ -91,6 +98,7 @@ var Juggernaut = Class.create({
       if(this.is_connected) this.attempting_to_reconnect = false;
     }.bind(this), 1 * 1000);
     this.logger('Connected');
+    this.fire_event('connected');
   },
 
   receiveData: function(e) {
@@ -138,6 +146,7 @@ var Juggernaut = Class.create({
     this.is_connected = false;
     if(!this.attempting_to_reconnect) {
       this.logger('There has been an error connecting');
+      this.fire_event('errorConnecting');
       this.reconnect();
     }
   },
@@ -146,6 +155,7 @@ var Juggernaut = Class.create({
     this.is_connected = false;
     if(!this.attempting_to_reconnect) {
       this.logger('Connection has been lost');
+      this.fire_event('disconnected');
       this.reconnect();
     }
   },
@@ -153,6 +163,7 @@ var Juggernaut = Class.create({
   reconnect: function(){
     if(this.options.reconnect_attempts){
       this.attempting_to_reconnect = true;
+      this.fire_event('reconnect');
       this.logger('Will attempt to reconnect ' + this.options.reconnect_attempts + ' times,\
 the first in ' + (this.options.reconnect_intervals || 3) + ' seconds');
       for(var i=0; i < this.options.reconnect_attempts; i++){
