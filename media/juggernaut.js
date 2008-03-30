@@ -69,8 +69,10 @@ var Juggernaut = Class.create({
   },
   
   connect: function(){
-    this.fire_event('connect');
-    if(!this.is_connected) this.swf().connect(this.options.host, this.options.port);
+    if(!this.is_connected){
+      this.fire_event('connect');
+      this.swf().connect(this.options.host, this.options.port);
+    }
   },
   
   disconnect: function(){
