@@ -53,7 +53,7 @@ var Juggernaut = Class.create({
     var msg = new Hash();
     msg.set('command',  'broadcast');
     msg.set('body',     body);
-    msg.set('type',     this.type);
+    msg.set('type',     (type||'to_channels'));
     if(channels)  msg.set('channels', channels);
     if(client_ids) msg.set('client_ids', client_ids);
     this.sendData(msg.toJSON());
