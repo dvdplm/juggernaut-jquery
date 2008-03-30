@@ -77,7 +77,6 @@ var Juggernaut = Class.create({
     if(this.is_connected) {
       this.swf().disconnect();
       this.is_connected = false;
-      this.fire_event('disconnect');
     }
   },
   
