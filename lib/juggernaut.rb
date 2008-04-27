@@ -110,7 +110,6 @@ module Juggernaut
             @template.send! :evaluate_assigns
 
             generator = ActionView::Helpers::PrototypeHelper::JavaScriptGenerator.new(@template, &block)
-            response.content_type = Mime::JS
             render_for_juggernaut(generator.to_s, options.is_a?(Hash) ? options[:juggernaut] : nil)
           else
             render_without_juggernaut(options, old_local_assigns, &block)
