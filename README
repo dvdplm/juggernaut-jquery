@@ -80,7 +80,7 @@ class ChatController < ApplicationController
 end
 
 
-The index.rhtml
+The index.html.erb
 
 	<html>
 	  <head>
