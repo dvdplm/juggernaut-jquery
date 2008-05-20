@@ -45,7 +45,7 @@ var Juggernaut = Class.create({
     this.options = options.evalJSON();
     Event.observe(window, 'load', function() {      
       juggernaut = this;
-      this.appendFlashObject();
+      this.appendFlashObject()
     }.bind(this));
   },
   
@@ -109,27 +109,25 @@ var Juggernaut = Class.create({
      this.logger("Received data:\n" + msg.body + "\n");
      eval(msg.body);
   },
-
-  appendFlashObject: function() {
-    if($(this.options.swf_name)) {
+  
+  appendFlashObject: function(){
+    if(this.swf()) {
       throw("Juggernaut error. 'swf_name' must be unique per juggernaut instance.");
     }
     this.element = new Element('div', {
-      className: 'juggernaut'
-    });
-    this.element.setStyle({
-      height: this.options.height,
-      width:  this.options.width
+      id: 'juggernaut'
     });
     $(document.body).insert({ bottom: this.element });
     swfobject.embedSWF(
       this.options.swf_address, 
-      this.options.swf_name, 
+      'juggernaut', 
       this.options.width, 
       this.options.height, 
-      this.options.flash_version, 
+      String(this.options.flash_version),
       this.options.ei_swf_address,
-      {'bridgeName': this.options.bridge_name}
+      {'bridgeName': this.options.bridge_name},
+      {},
+      {'id': this.options.swf_name, 'name': this.options.swf_name}
     );
   },
   
@@ -138,7 +136,8 @@ var Juggernaut = Class.create({
   },
   
   refreshFlashObject: function(){
-    this.so.write(this.element);
+    this.swf().remove();
+    this.appendFlashObject();
   },
   
   errorConnecting: function(e) {
