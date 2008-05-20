@@ -33,8 +33,9 @@ class SocketServer {
   static var socket : XMLSocket;
   
   static function connect(host:String, port:Number) {
-    System.security.loadPolicyFile('xmlsocket://' + host + ':' + port);
-        
+    // The following line was causing crashes on Leopard
+    // System.security.loadPolicyFile('xmlsocket://' + host + ':' + port);
+
     socket = new XMLSocket();
     socket.onData = onData;
     socket.onConnect = onConnect;
