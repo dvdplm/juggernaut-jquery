@@ -122,17 +122,15 @@ var Juggernaut = Class.create({
       width:  this.options.width
     });
     $(document.body).insert({ bottom: this.element });
-    this.so = new SWFObject(
+    swfobject.embedSWF(
       this.options.swf_address, 
       this.options.swf_name, 
       this.options.width, 
       this.options.height, 
       this.options.flash_version, 
-      this.options.flash_color
+      this.options.ei_swf_address,
+      {'bridgeName': this.options.bridge_name}
     );
-    this.so.useExpressInstall(this.options.ei_swf_address);
-	  this.so.addVariable("bridgeName", this.options.bridge_name);
-    this.so.write(this.element);
   },
   
   swf: function(){
