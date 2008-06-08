@@ -28,7 +28,7 @@ var Juggernaut = Class.create({
   is_connected: false,
   attempting_to_reconnect: false,
   ever_been_connected: false,
-  hasFirebug: "console" in window && "firebug" in window.console && window.console.firebug.indexOf("1.0") > -1,
+  hasFirebug: "console" in window && "firebug" in window.console,
 
   logger: function(msg) {
     if (this.options.debug) {
