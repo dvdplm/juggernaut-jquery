@@ -20,7 +20,7 @@ module Juggernaut # :nodoc:
         :reconnect_attempts   => 3,
         :reconnect_intervals  => 3
       }.merge(options)
-      javascript_tag "new Juggernaut('#{options.to_json}');"
+      javascript_tag "new Juggernaut(#{options.to_json});"
     end
     
     def expand_javascript_sources(sources)

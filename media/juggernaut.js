@@ -42,7 +42,7 @@ var Juggernaut = Class.create({
    },
   
   initialize: function(options) {
-    this.options = options.evalJSON();
+    this.options = options;
     Event.observe(window, 'load', function() {      
       juggernaut = this;
       this.appendFlashObject()
