@@ -23,7 +23,7 @@ module Juggernaut # :nodoc:
       javascript_tag "new Juggernaut(#{options.to_json});"
     end
     
-    def expand_javascript_sources(sources)
+    def expand_javascript_sources(sources, recursive = false)
       if sources.include?(:juggernaut)
         sources = sources[0..(sources.index(:juggernaut))] + 
           ['juggernaut/swfobject', 'juggernaut/juggernaut'] + 
