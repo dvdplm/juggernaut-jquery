@@ -30,7 +30,7 @@ module Juggernaut # :nodoc:
           sources[(sources.index(:juggernaut) + 1)..sources.length]
         sources.delete(:juggernaut)
       end
-      super
+      super(sources)
     end
     
   end
