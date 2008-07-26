@@ -41,13 +41,13 @@ module Juggernaut # :nodoc:
     def expand_javascript_sources(sources)
       if sources.include?(:juggernaut)
         juggernaut_js = case Juggernaut::JSLIB
-                          when  :prototype then 'juggernaut'
-                          when  :jquery then 'jquery.juggernaut'
-                          else  'juggernaut'
+                          when  :prototype then ['juggernaut/juggernaut']
+                          when  :jquery then ['juggernaut/jquery.juggernaut', 'juggernaut/jquery.json']
+                          else  ['juggernaut/juggernaut']
                         end
                           
         sources = sources[0..(sources.index(:juggernaut))] + 
-          ['juggernaut/swfobject', "juggernaut/#{juggernaut_js}" ] + 
+          ['juggernaut/swfobject', *juggernaut_js ] + 
           sources[(sources.index(:juggernaut) + 1)..sources.length]
         sources.delete(:juggernaut)
       end
