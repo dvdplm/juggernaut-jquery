@@ -12,6 +12,7 @@ puts "Checking for \"jquery.js\" in \"#{RAILS_ROOT}/public/javascripts/\"..."
 if File.exist?("#{RAILS_ROOT}/public/javascripts/jquery.js")
   puts "Using jQuery? Right on!"
   FileUtils.cp("#{here}/media/jquery.juggernaut.js", "#{there}/public/javascripts/juggernaut/")
+  FileUtils.cp("#{here}/media/jquery.json.js", "#{there}/public/javascripts/juggernaut/")
 else
   puts "Still on Prototype? Oh well..."
   FileUtils.cp("#{here}/media/juggernaut.js", "#{there}/public/javascripts/juggernaut/")
