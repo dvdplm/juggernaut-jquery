@@ -112,7 +112,7 @@ var Juggernaut = Class.create({
   
   appendFlashObject: function(){
     if(this.swf()) {
-      throw("Juggernaut error. 'swf_name' must be unique per juggernaut instance.");
+      throw("Juggernaut error. 'swf_name' must be unique per juggernaut instance. 'swf_name' was: "+this.options.swf_name + ". The check returned: " + this.swf + ". True? " + (this.swf ? 'yes' : 'no'));
     }
     this.element = new Element('div', {
       id: 'juggernaut'
