@@ -3,7 +3,7 @@ require "socket"
 
 module Juggernaut
   CONFIG = YAML::load(ERB.new(IO.read("#{RAILS_ROOT}/config/juggernaut_hosts.yml")).result).freeze
-  JSLIB = File.exist?("#{RAILS_ROOT}/public/javascripts/prototype.js") ? :prototype : :jquery
+  JSLIB = File.exist?("#{RAILS_ROOT}/public/javascripts/jquery.js") ? :jquery : :prototype
 
   class << self
     
