@@ -38,7 +38,7 @@ module Juggernaut # :nodoc:
       end
     end
     
-    def expand_javascript_sources(sources)
+    def expand_javascript_sources(sources, recursive = false)
       if sources.include?(:juggernaut)
         juggernaut_js = case Juggernaut::JSLIB
                           when  :prototype then ['juggernaut/juggernaut']
