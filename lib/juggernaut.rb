@@ -5,6 +5,8 @@ module Juggernaut
   CONFIG = YAML::load(ERB.new(IO.read("#{RAILS_ROOT}/config/juggernaut_hosts.yml")).result).freeze
   CR = "\0"
   
+  JSLIB = File.exist?("#{RAILS_ROOT}/public/javascripts/prototype.js") ? :prototype : :jquery
+
   class << self
     
     def send_to_all(data)

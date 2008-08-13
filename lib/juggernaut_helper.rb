@@ -20,17 +20,42 @@ module Juggernaut # :nodoc:
         :reconnect_attempts   => 3,
         :reconnect_intervals  => 3
       }.merge(options)
-      javascript_tag "new Juggernaut(#{options.to_json});"
+      init_juggernaut(options)
+    end
+    
+    def init_juggernaut(options)
+      case Juggernaut::JSLIB
+        when :prototype
+          javascript_tag %Q{
+            new Juggernaut(#{options.to_json})
+          }
+        when :jquery
+          javascript_tag %Q{
+            jQuery(document).ready(function(){
+              jQuery.Juggernaut.initialize(#{options.to_json})
+            });
+          }
+      end
     end
     
     def expand_javascript_sources(sources, recursive = false)
       if sources.include?(:juggernaut)
+        juggernaut_js = case Juggernaut::JSLIB
+                          when  :prototype then ['juggernaut/juggernaut.js']
+                          when  :jquery then ['juggernaut/jquery.juggernaut.js', 'juggernaut/jquery.json.js']
+                          else  ['juggernaut/juggernaut.js']
+                        end
+                          
         sources = sources[0..(sources.index(:juggernaut))] + 
-          ['juggernaut/swfobject', 'juggernaut/juggernaut'] + 
+          ['juggernaut/swfobject', *juggernaut_js ] + 
           sources[(sources.index(:juggernaut) + 1)..sources.length]
         sources.delete(:juggernaut)
       end
-      super(sources)
+      if recursive
+        super(sources, recursive) 
+      else
+        super(sources)
+      end
     end
     
   end
