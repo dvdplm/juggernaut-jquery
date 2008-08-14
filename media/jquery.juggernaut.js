@@ -57,7 +57,7 @@ if (typeof jQuery == 'undefined') throw("Juggernaut error. jQuery could not be f
       },
 
       refreshFlashObject: function(){
-        this.swf().remove();
+        $(this.swf()).remove();
         this.appendFlashObject();
       },
       
