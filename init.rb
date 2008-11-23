@@ -6,7 +6,8 @@ require 'juggernaut_helper'
 
 ActionView::Base.send(:include, Juggernaut::JuggernautHelper)
 
-ActionView::Helpers::AssetTagHelper.register_javascript_expansion :juggernaut => ['juggernaut/swfobject', 'juggernaut/juggernaut']
+ActionView::Helpers::AssetTagHelper.register_javascript_expansion :juggernaut => [
+  'juggernaut/swfobject', 'juggernaut/jquery.juggernaut.js', 'juggernaut/jquery.json.js']
 
 ActionController::Base.class_eval do
   alias_method :render_without_juggernaut, :render
